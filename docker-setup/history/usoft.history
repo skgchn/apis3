@@ -1,0 +1,533 @@
+cd /var/www
+ls
+cd htdocs
+ls
+ls -al
+pwd
+exit
+cd /var/www
+ls
+cd htdocs
+ls
+cd /etc/apache2/
+ls
+cd sites-available/
+ls
+vim 25-app-*
+exit
+cd /data/work/myprojects
+cd /data/work
+ls
+cd /var/www/htdocs
+l
+ls
+mv index.php phpinfo.php
+composer create-project symfony/framework-standard-edition movies "3.3.*"
+ls
+ls -al
+cd ..
+ls
+ls -l htdocs
+whoami
+composer create-project symfony/framework-standard-edition movies "3.3.*"
+ls
+ls -al
+cd htdocs
+ls
+composer create-project symfony/framework-standard-edition movies "3.3.*"
+ls
+cd moviles
+cd movies
+ls
+mysql -u usoft -p
+mysql -u usoft@202.22.2.33 -p
+mysql -u usoft -h 202.22.2.33 -p
+mysql -u root -h 202.22.2.33 -p
+exit
+cd /var/www/
+ls
+cd htdocs
+ls
+cd movies
+ls
+composer install
+cat composer.json 
+mysql -u root -h 202.22.2.33 -p
+cd ..
+ls
+exit
+cd /var/www/
+ls
+cd htdocs
+ls
+cd movies
+ls
+vim composer.lock 
+composer require doctrine/doctrine-migrations-bundle "^1.3"
+sudo apt install imagick
+sudo apt install php7.1-imagick
+sudo apt install imagic-php7.1
+sudo apt install php7.1-imagic
+sudo apt install php7-imagic
+sudo apt update
+sudo apt install php7.1-imagic
+sudo apt-get install php7.1-imagic
+composer require doctrine/doctrine-migrations-bundle "^1.3"
+php -v
+sudo apt-get install php7.1-imagic
+exit
+cd /var/www/htdocs/movies/
+ls
+ls -l bin/console
+bin/console doctrine:generate:entity
+date +%s | sha256sum | base64 | head -c 32 ; echo
+bin/console doctrine:migrations:diff
+bin/console doctrine:migrations:migrate
+mysql -u root -h 202.22.2.33 -p
+bin/console doctrine:generate:entity
+bin/console doctrine:migrations:diff
+bin/console doctrine:migrations:migrate
+bin/console doctrine:migrations:latest
+bin/console doctrine:migrations:up-to-date
+bin/console doctrine:migrations:uptodate
+bin/console doctrine:migrations:latest
+mysql -u root -h 202.22.2.33 -p
+composer require --dev doctrine/doctrine-fixtures-bundle
+bin/console doctrine:fixtures:load
+mysql -u root -h 202.22.2.33 -p
+exit
+cd /var/www/
+ls
+cd htdocs
+ls
+cd movies
+ls
+pwd
+ls
+composer require friendsofsymfony/rest-bundle
+ls
+vim composer.json 
+composer require friendsofsymfony/rest-bundle
+vim composer.json 
+composer require friendsofsymfony/rest-bundle
+composer require jms/serializer-bundle
+exit
+cd /var/www/
+ls
+cd htdocs/
+ls
+cd movies/
+ls
+exit
+cd /var/www/htdocs/movies/
+ls
+bin/console debug:router
+ls
+cd /var/www/htdocs/movies/
+bin/console debug:router
+exit
+cd /var/www/
+ls
+cd ht
+cd htdocs
+ls
+cd movies
+ls
+bin/console debug:router
+exit
+cd /var/www/htdocs
+ls
+cd movies
+ls
+composer install
+ls
+vim composer.json 
+vim README.txt 
+mysql -u root -h202.22.2.33 -p
+cd web
+ls -al
+ks
+du -s modules
+cd modules
+s
+ls
+cd ..
+ls
+cd ..
+ls
+cd web
+ls
+cd core
+ls
+cd modules
+ls
+cd ..
+du -s modules
+ls
+cd modules
+ls
+cd ..
+du -s modules
+cd node
+ls
+cd modules
+ls
+cd ..
+ls
+cd ..
+ls
+cd ..
+ls
+cd modules
+ls
+cd vendor
+ls
+cd ..
+cd core
+ls
+cd ..
+ls
+cd sites
+ls
+default
+ls
+cd ..
+ls
+cd ..
+ls
+cd themes
+ls
+cd themes
+ls
+cd web
+ls
+cd themes
+ls
+cd core
+ls
+cd ../core
+ls
+cd themes
+ls
+cd includes
+ls
+cd ../includes
+ls
+cd ..
+ls
+cd assets
+ls
+cd vendor
+ls
+cd ../..
+ls
+cd misc
+ls
+cd ..
+ls
+cd lib
+ls
+cd ../modules
+ls
+cd ..
+cd quickedit
+ls
+cd ..
+ls
+cd core
+ls
+cd modules
+ls
+cd ..
+ls
+cd themes
+ls
+cd ..
+ls
+cd misc
+ls
+cd ..
+ls
+cd modules
+ls
+cd ..
+ls
+cd config
+ls
+cd install
+ls
+cd ../schema
+ls
+cd ../..
+ls
+cd ..
+ls
+cd ../..
+ls
+mv movies movies.opigno
+ls
+mv movies.good movies
+ls
+exit
+cd /var/www/htdocs/movies
+ls
+bin/console --help
+bin/console list
+bin/console debug:router
+exit
+cd /var/www/htdocs
+ls
+cd ..
+ls
+cd html
+ls
+cd ..
+ls
+cd htdocs
+ls
+cd movies
+ls
+exit
+ps
+whoami
+cd /var/www
+ls
+cd htdocs
+ls
+cd movies
+ls
+cd /etc/apache2/sites-enabled/
+ls
+vim 25-app-*
+exit
+vim /etc/apache2/sites-enabled/25-app-*
+which mysql
+mysql -u usoft@202.22.2.33 -pusoft 
+mysql -u usoft -h 202.22.2.33 -pusoft 
+mysql -u usoft -h 202.22.2.33 -p1235
+ls
+exit
+mysql -u usoft -h 202.22.2.33 -p1235
+exit
+cd /var/www/
+cd htdocs
+cd movies
+ls
+bin/console
+bin/console server:status
+bin/console | more
+bin/console about
+bin/console doctrine help
+bin/console doctrine:schema help
+bin/console doctrine:migrations help
+bin/console doctrine:migrations
+bin/console doctrine
+bin/console doctrine:schema:create
+mysql -u usoft -h 202.22.2.33 -p1235
+mysql -u usoft -h 202.22.2.33 -p1235 movies
+bin/console doctrine
+bin/console doctrine:fixtures help
+exit
+cd /data/work
+ls
+cd bin
+ls
+cd apache
+ls
+cd ..
+ls
+vim start.sh
+cd apache
+ls
+cd ..
+cd
+cd /var/www/
+ls
+cd htdocs
+ls
+cd movies
+ls
+bin/console debug:router
+exit
+cd /var/www/htdocs/
+ls
+cd movies
+ls
+bin/console debug:router
+pwd
+exit
+cd /var/www
+vim /etc/apache2/sites-enabled/25-app-non-ssl.conf 
+ls
+cd htdocs/movies
+bin/console debug:router
+cat /var/log/apache2/dev_non_ssl_error_ssl.log 
+cat /var/log/apache2/dev_non_ssl_access_ssl.log 
+vim /etc/apache2/sites-enabled/25-app-non-ssl.conf 
+ls
+vim /etc/apache2/sites-enabled/25-app-ssl.conf 
+exit
+cd /var/www/htdocs/movies
+ls
+bin/console debug:router
+ls
+vim composer.json 
+bin/console debug:router
+php -c
+php -v
+echo $PATH
+sudo curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
+sudo chmod a+x /usr/local/bin/symfony
+which symfony
+pwd
+ls
+cd web
+ls
+cd ..
+ls
+pwd
+ls
+cd app
+ls
+cd ..
+ls
+cd src
+ls
+cd ..
+ls
+cd web
+ls
+cd ..
+ls
+bin/console debug:router
+ls
+cd vendor
+ls
+cd friendsofsymfony/
+ls
+cd ..
+ls
+cd sensio
+ls
+cd framework-extra-bundle/
+ls
+cd DependencyInjection/
+ls
+vim Configuration.php 
+exit
+cd /var/www/htdocs/movies
+ls
+bin/console debug:router
+bin/console cache:clear --env=dev
+bin/console debug:router
+exit
+cd /var/www
+cd htdocs/movies
+ls
+bin/console routes:debug
+bin/console router:debug
+bin/console routes
+bin/console
+bin/console debug:router
+bin/console cache
+bin/console cache:clear --env dev
+bin/console
+bin/console doctrine:fixtures
+bin/console doctrine:fixtures:load
+bin/console cache:clear --env dev
+bin/console debug:router
+bin/console cache:clear --env dev
+bin/console debug:router
+bin/console cache:clear --env dev
+bin/console debug:router
+exit
+pwd
+cd /var/www
+ls
+cd htdocs
+ls
+cd movies
+s
+ls
+cd web
+ls
+cd ..
+ls
+bin/console debug::routers
+bin/console debug:routes
+bin/console debug:router
+bin/console doctrine:migrations:diff
+bin/console doctrine:migrations:migrate
+mysql -u root -p1235
+mysql -u usoft -h 202.22.2.33 -p1235 movies
+exit
+cd /var/www/htdocs
+ls
+cd movies
+ls
+bin/console doctrine:migrations:migrate
+mysql -u usoft -h 202.22.2.33 -p1235 movies
+bin/console doctrine:migrations:diff
+exit
+cd var/wwww/htdocs/
+cd /var/wwww/htdocs/movies
+
+cd /var/www/htdocs/movies
+ls
+bin/console debug:routes
+bin/console debug:router
+bin/console cache
+bin/console cache:clear --env dev
+bin/console debug:router
+mysql -u usoft -h 202.22.2.33 -p1235 movies
+exit
+cd /var/www/htdocs/movies
+ls
+bin/console debug:router
+exit
+cd /var/www/htdocs
+ls
+cd movies
+ls
+bin/console debug:router
+bin/console debug:container
+bin/console cache:clear --env dev
+bin/console debug:container
+bin/console debug:container log
+bin/console debug:container logger
+bin/console debug:container > test.txt 2>&1
+ls
+vim test.txt
+bin/console debug:container doctrine
+bin/console debug:container AppBundle
+bin/console debug:container router
+bin/console debug:container AppBundle
+exit
+cd /var/www/htdocs/movies
+bin/console debug:container AppBundle
+exit
+cd /var/www/htdocs/movies
+l
+bin/console debug:router
+exit
+cd /var/www/htdocs/movies
+ls
+exit
+cd /var/www/htdocs/
+ls
+cd movies
+ls
+bin/console debug:router
+composer require willdurand/hateoas-bundle
+ls
+composer require willdurand/hateoas-bundle
+ls
+php bin/console doctrine:fixtures:load
+exit
+cd /data/work/myprojects
+cd /var/www/htdocs/movies
+ls
+bin/console debug:routes
+bin/console debug:router
+php bin/console doctrine:fixtures:load
+exit

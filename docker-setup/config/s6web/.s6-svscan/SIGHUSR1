@@ -1,0 +1,2 @@
+#!/bin/execlineb -P
+echo s6-svscan received SIGUSR1

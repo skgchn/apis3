@@ -1,0 +1,68 @@
+version: '2'
+
+networks:
+     devproj:
+      external: true
+
+services:
+   apis3-web:
+     image: node8php7.1-web:1.0
+     container_name: apis3_web
+     hostname: WEB-1
+     user: usoft
+     restart: unless-stopped
+     ports:
+      - "80"
+      - "443"
+      - "3000"
+      - "8000"
+      - "8080"
+      - "9100"
+      - "9101"
+     expose:
+      - "80"
+      - "443"
+      - "3000"
+      - "8000"
+      - "8080"
+      - "9100"
+      - "9101"
+     tty: true
+     volumes:
+      - ./config/webapache:/home/usoft/bin
+      - ./history/usoft.history:/home/usoft/.bash_history
+      - ./logs/apache2:/var/log/apache2
+      - ../htdocs:/var/www/htdocs
+      - ./config/s6web/:/etc/s6/
+#     extra_hosts:
+#      - "autouonline.dev:202.22.2.5"
+#      - "sp2.dev:202.22.2.5"
+     networks:
+        devproj:
+         ipv4_address: 202.22.2.55
+     stdin_open: true
+   apis3-mysql:
+      image: mysql:5.6
+      container_name: apis3_mysql
+      hostname: MYSQL
+      ports:
+       - "3306"
+      expose:
+       - "3306"
+      tty: true
+      environment:
+       MYSQL_DATABASE: dev
+       MYSQL_ROOT_PASSWORD: 1235
+       MYSQL_USER: usoft
+       MYSQL_PASSWORD: 1235
+      volumes:
+        - ./config/mysql/my.cnf:/etc/mysql/my.cnf
+        - ./mysqldata:/var/lib/mysql
+        - ./history/root.history:/root/.bash_history
+        - ./logs/mysql:/var/log/mysql
+      networks:
+        devproj:
+         ipv4_address: 202.22.2.33
+      stdin_open: true
+      links:
+        - apis3-web
