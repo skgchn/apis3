@@ -531,3 +531,6 @@ bin/console debug:routes
 bin/console debug:router
 php bin/console doctrine:fixtures:load
 exit
+cd /var/www/htdocs/movies
+bin/console debug:router
+exit

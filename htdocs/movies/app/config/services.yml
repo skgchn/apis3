@@ -33,6 +33,8 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    # Register event subscriber DoctrineEntityDeserializationSubscriber for reading and applying DeserializeEntity
     AppBundle\Serializer\DoctrineEntityDeserializationSubscriber:
         tags: ['jms_serializer.event_subscriber']
         public: false
