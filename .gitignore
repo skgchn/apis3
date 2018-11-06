@@ -11,6 +11,8 @@ docker-setup/logs/apache2/*
 !docker-setup/logs/apache2/.gitignore
 docker-setup/logs/mysql/*
 !docker-setup/logs/mysql/.gitignore
+docker-setup/history/*
+!docker-setup/history/.gitignore
 docker-setup/images
 .code-workspace
 movies-full-source-code

@@ -5,17 +5,15 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Person;
 use AppBundle\Exception\ValidationException;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use FOS\RestBundle\Controller\FOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-//use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-//use FOS\RestBundle\Controller\ControllerTrait;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use FOS\RestBundle\Controller\ControllerTrait;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
-class PeopleController extends FOSRestController {
-//class PeopleController extends AbstractController {
-//
-//    use ControllerTrait;
+class PeopleController extends AbstractController {
+
+    use ControllerTrait;
     
     /**
      * @Rest\View()

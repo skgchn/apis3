@@ -5,21 +5,25 @@ namespace AppBundle\Controller;
 //use FOS\RestBundle\Controller\ControllerTrait;
 
 
+use AppBundle\Entity\EntityMerger;
 use AppBundle\Entity\Movie;
 use AppBundle\Entity\MovieRole;
-use AppBundle\Entity\EntityMerger;
 use AppBundle\Exception\ValidationException;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\ControllerTrait;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
-class MoviesController extends FOSRestController {
+/**
+ * By default give access to controllers for all users: 
+ * Do we need this? -- <ReplaceWithAtSymbol>Security("is_anonymous() or is_authenticated()")
+ */
+class MoviesController extends AbstractController {
 
-//class MoviesController extends AbstractController {
-
-//    use ControllerTrait;
+    use ControllerTrait;
 
     /**
      * @var EntityMerger
@@ -47,6 +51,7 @@ class MoviesController extends FOSRestController {
      * @Rest\View(statusCode=201)
      * @ParamConverter("movie", converter="fos_rest.request_body")
      * @Rest\NoRoute()
+     * @Security("is_authenticated()");
      */
     public function postMoviesAction(Movie $movie, ConstraintViolationListInterface $validationErrors) {
         if (count($validationErrors) > 0) {
@@ -61,6 +66,7 @@ class MoviesController extends FOSRestController {
     
     /**
      * @Rest\View()
+     * @Security("is_authenticated()");
      */
     public function deleteMoviesAction(?Movie $movie) {
         if (NULL === $movie) {
@@ -99,6 +105,7 @@ class MoviesController extends FOSRestController {
      * @Rest\View()
      * @ParamConverter("role", converter="fos_rest.request_body", options={"deserializationContext" = {"groups" = {"Deserialize"}}})
      * @Rest\NoRoute()
+     * @Security("is_authenticated()");
      */
     public function postMovieRolesAction(Movie $movie, MovieRole $role, ConstraintViolationListInterface $validationErrors) {
         
@@ -121,8 +128,8 @@ class MoviesController extends FOSRestController {
     
     /**
      * @Rest\View()
-     * @ParamConverter("modifiedMovie", converter="fos_rest.request_body", options={"validator" = {"groups" = {"Patch"}}}
-     * )
+     * @ParamConverter("modifiedMovie", converter="fos_rest.request_body", options={"validator" = {"groups" = {"Patch"}}})
+     * @Security("is_authenticated()");
      */
     public function patchMovieAction(?Movie $movie, Movie $modifiedMovie, ConstraintViolationListInterface $validationErrors) {
         if (null === $movie) {

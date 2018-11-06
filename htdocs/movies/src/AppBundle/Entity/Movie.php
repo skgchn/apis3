@@ -32,7 +32,7 @@ class Movie
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
-     * @Assert\NotBlank(groups={"Default", "Patch"})
+     * @Assert\NotBlank(groups={"Default"})
      * @Assert\Length(max=255)
      */
     private $title;

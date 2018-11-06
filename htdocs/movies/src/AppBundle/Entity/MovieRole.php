@@ -11,7 +11,7 @@ use Hateoas\Configuration\Annotation as Hateoas;
 /**
  * MovieRole
  *
- * @ORM\Table(name="movie_role")
+ * @ORM\Table(name="movie_role", indexes={@ORM\Index(name="movie_role_idx", columns={"movie_id", "role"})})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MovieRoleRepository")
  * By default no properties to be serialized.
  * @Serializer\ExclusionPolicy("ALL")

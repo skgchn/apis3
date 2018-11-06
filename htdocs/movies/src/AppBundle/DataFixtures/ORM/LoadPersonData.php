@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\DataFixtures;
+namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Person;
 use Doctrine\Bundle\FixturesBundle\Fixture as Fixture;

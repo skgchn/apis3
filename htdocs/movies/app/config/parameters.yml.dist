@@ -17,3 +17,8 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ZTBmZTIyMDFiMDU4Mjg3YzgyZDBmMDZh
+
+    jwt_private_key_path: '%kernel.project_dir%/var/jwt/private.pem'
+    jwt_public_key_path: '%kernel.project_dir%/var/jwt/public.pem'
+    jwt_key_pass_phrase: 'apis3'
+    jwt_token_ttl: 3600

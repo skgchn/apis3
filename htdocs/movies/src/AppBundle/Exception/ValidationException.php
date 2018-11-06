@@ -27,7 +27,7 @@ class ValidationException extends HttpException {
         foreach ($validationErrors as $error) {
             $errorMessages[$error->getPropertyPath()] = $error->getMessage();
         }
-        
+                
         parent::__construct(400, json_encode($errorMessages));
     }
 }
