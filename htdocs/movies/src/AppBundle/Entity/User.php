@@ -141,7 +141,6 @@ class User implements UserInterface {
     }
 
     /**
-     * 
      * @param string $username
      */
     function setUsername(string $username) {
@@ -149,9 +148,9 @@ class User implements UserInterface {
     }
     
     /**
-     * @param string $password
+     * @param string|null $password
      */
-    function setPassword($password) {
+    function setPassword(?string $password) {
         $this->password = $password;
     }
     
@@ -170,9 +169,9 @@ class User implements UserInterface {
     }
 
     /**
-     * @param string $retypedPassword
+     * @param string|null $retypedPassword
      */
-    function setRetypedPassword($retypedPassword) {
+    function setRetypedPassword(?string $retypedPassword) {
         $this->retypedPassword = $retypedPassword;
     }
 

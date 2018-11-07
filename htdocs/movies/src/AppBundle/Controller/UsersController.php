@@ -97,6 +97,13 @@ class UsersController extends AbstractController {
             throw new ValidationException($validationErrors);  
         }
         
+/*
+        // Since Assert\Expression whenPresentIsNotEmpty() is added to the password field in User.php, the below check for empty password is not needed
+        if (empty($modifiedUser->getPassword())) {
+            $modifiedUser->setPassword(null);
+        }
+ */
+        
         //Merge entities
         $this->entityMerger->merge($theUser, $modifiedUser);
 
