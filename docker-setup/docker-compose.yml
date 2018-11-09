@@ -67,7 +67,7 @@ services:
       links:
         - apis3-web
    redis:
-      image: redis:4.0.11-alpine
+      image: redis:5.0.0-alpine
       container_name: apis3_redis
       hostname: REDIS
       ports:
