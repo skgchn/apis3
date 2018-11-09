@@ -6,6 +6,7 @@ use AppBundle\Entity\EntityMerger;
 use AppBundle\Entity\Movie;
 use AppBundle\Entity\User;
 use AppBundle\Exception\ValidationException;
+use AppBundle\Security\TokenStorage;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\ControllerTrait;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
@@ -22,12 +23,12 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
  */
 class UsersController extends AbstractController {
 
-    /**
-     * @var EntityMerger
-     */
-    private $entityMerger;
-
     use ControllerTrait;
+
+    /**
+     * @var UserPasswordEncoderInterface
+     */
+    private $passwordEncoder;
 
     /**
      * @var JWTEncoderInterface
@@ -35,15 +36,25 @@ class UsersController extends AbstractController {
     private $jwtEncoder;
 
     /**
-     * @var UserPasswordEncoderInterface
+     * @var EntityMerger
      */
-    private $passwordEncoder;
+    private $entityMerger;
 
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder, JWTEncoderInterface $jwtEncoder, EntityMerger $entityMerger) {
+    /**
+     * @var TokenStorage
+     */
+    private $tokenStorage;
+    
+    public function __construct(
+            UserPasswordEncoderInterface $passwordEncoder,
+                JWTEncoderInterface $jwtEncoder,
+                    EntityMerger $entityMerger,
+                    TokenStorage $tokenStorage) {
         
         $this->passwordEncoder = $passwordEncoder;
         $this->jwtEncoder = $jwtEncoder;
         $this->entityMerger = $entityMerger;
+        $this->tokenStorage = $tokenStorage;
     }
     
     /**
@@ -111,6 +122,10 @@ class UsersController extends AbstractController {
 
         $this->persistUser($theUser);
         
+        if (!empty($modifiedUser->getPassword())) {
+            $this->tokenStorage->invalidateToken($theUser->getUsername());
+        }
+
         return $theUser;
     }
     
@@ -136,4 +151,3 @@ class UsersController extends AbstractController {
         $em->flush();        
     }
 }
-

@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new \Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
             new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
+            new \Snc\RedisBundle\SncRedisBundle(),
             
             new AppBundle\AppBundle(),
         ];

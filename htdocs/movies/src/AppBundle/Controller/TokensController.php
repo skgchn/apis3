@@ -9,22 +9,23 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use AppBundle\Security\TokenStorage;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\ControllerTrait;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Is Security annotation needed here, because ANONYMOUS and AUTHENTICATED is everybody?
  * @Security("is_anonymous() or is_authenticated()")
  */
 class TokensController  extends AbstractController {
-    
+
     use ControllerTrait;
 
     /**
@@ -37,10 +38,19 @@ class TokensController  extends AbstractController {
      */
     private $passwordEncoder;
     
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder, JWTEncoderInterface $jwtEncoder) {
+    /**
+     * @var TokenStorage
+     */
+    private $tokenStorage;
+    
+    public function __construct(
+            UserPasswordEncoderInterface $passwordEncoder,
+                JWTEncoderInterface $jwtEncoder,
+                    TokenStorage $tokenStorage) {
         
         $this->passwordEncoder = $passwordEncoder;
         $this->jwtEncoder = $jwtEncoder;
+        $this->tokenStorage = $tokenStorage;
     }
     
     /**
@@ -69,6 +79,8 @@ class TokensController  extends AbstractController {
                                    // see https://stackoverflow.com/questions/13901256/how-do-i-read-from-parameters-yml-in-a-controller-in-symfony2
         ]);
         
-        return new JsonResponse(['token' => $token]);        
+        $this->tokenStorage->storeToken($user->getUsername(), $token);
+
+        return new JsonResponse(['token' => $token]);
     }
 }

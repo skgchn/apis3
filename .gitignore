@@ -13,6 +13,8 @@ docker-setup/logs/mysql/*
 !docker-setup/logs/mysql/.gitignore
 docker-setup/history/*
 !docker-setup/history/.gitignore
+docker-setup/redisdata/*
+!docker-setup/redisdata/.gitignore
 docker-setup/images
 .code-workspace
 movies-full-source-code

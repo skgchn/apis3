@@ -1,8 +1,8 @@
 <?php
 
-
 namespace AppBundle\Security;
 
+use AppBundle\Security\TokenStorage;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Exception\JWTDecodeFailureException;
 use Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\AuthorizationHeaderTokenExtractor;
@@ -17,15 +17,20 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
 class TokenAuthenticator extends AbstractGuardAuthenticator {
-
     /**
      * @var JWTEncoderInterface
      */
     private $jwtEncoder;
 
-    public function __construct(JWTEncoderInterface $jwtEncoder) {
+    /**
+     * @var TokenStorage
+     */
+    private $tokenStorage;
+
+    public function __construct(JWTEncoderInterface $jwtEncoder, TokenStorage $tokenStorage) {
 
         $this->jwtEncoder = $jwtEncoder;
+        $this->tokenStorage = $tokenStorage;
     }
     
     /**
@@ -113,9 +118,12 @@ class TokenAuthenticator extends AbstractGuardAuthenticator {
                 return null;
             }
             
-            return $userProvider->loadUserByUsername($data['username']);
-            
-        
+           if (!$this->tokenStorage->isTokenValid($data['username'], $credentials)) {
+               return null;
+           }
+
+           return $userProvider->loadUserByUsername($data['username']);
+
         } catch (JWTDecodeFailureException $ex) {
             return null;
         }
@@ -199,5 +207,4 @@ class TokenAuthenticator extends AbstractGuardAuthenticator {
     public function supportsRememberMe(): bool {
         return false;
     }
-
 }

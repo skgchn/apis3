@@ -58,11 +58,32 @@ services:
       volumes:
         - ./config/mysql/my.cnf:/etc/mysql/my.cnf
         - ./mysqldata:/var/lib/mysql
-        - ./history/root.history:/root/.bash_history
+        - ./history/mysql.root.history:/root/.bash_history
         - ./logs/mysql:/var/log/mysql
       networks:
         devproj:
          ipv4_address: 202.22.2.33
+      stdin_open: true
+      links:
+        - apis3-web
+   redis:
+      image: redis:4.0.11-alpine
+      container_name: apis3_redis
+      hostname: REDIS
+      ports:
+        - "6379"
+      expose:
+        - "6379"
+      tty: true
+      command: ["redis-server", "--appendonly", "yes", "--logfile", "/data/redis-server.log", "--loglevel", "notice"]
+      restart: always
+      volumes:
+        - ./history/redis.root.history:/root/.ash_history
+        - ./history/redis-cli.history:/root/.rediscli_history
+        - ./redisdata:/data
+      networks:
+        devproj:
+         ipv4_address: 202.22.2.66
       stdin_open: true
       links:
         - apis3-web
