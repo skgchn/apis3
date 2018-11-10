@@ -7,7 +7,7 @@
 #docker build  -t node8php7.1-web:1.0 .
 
 # Step 3
-# Run this script
+# Run this bash script from which you are reading the instructions.
 
 create_file() {
     if ! [[ -f $1 ]]; then
@@ -38,6 +38,14 @@ docker exec -ti apis3_web /bin/bash -c "cd /var/www/htdocs/movies; exec ${SHELL:
 
 #Step 6
 #bin/console doctrine:fixtures:load
+
+# Step 7
+# Make hosts file entry
+# 202.22.2.55     apis3.test www.apis3.test
+
+# Note
+# You may have to generate your own SSL certificates for the domain and place in docker-setup/config/webapache/devssl.
+# Also you may have to import your private CA certificate as trusted CA in your browser.
 
 # To run mysql in web container
 #mysql -u usoft -h 202.22.2.33 -p1235 movies
