@@ -51,7 +51,7 @@ services:
        - "3306"
       tty: true
       environment:
-       MYSQL_DATABASE: dev
+       MYSQL_DATABASE: movies
        MYSQL_ROOT_PASSWORD: 1235
        MYSQL_USER: usoft
        MYSQL_PASSWORD: 1235
