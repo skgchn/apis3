@@ -4,7 +4,6 @@ nuxt1
 proj1
 .vscode
 docker-setup/mysqldata
-docker-setup/mysqldata.bak1
 docker-setup/docker-compose.yml.orig
 docker-setup/orig.env
 docker-setup/logs/apache2/*
@@ -16,6 +15,7 @@ docker-setup/history/*
 docker-setup/redisdata/*
 !docker-setup/redisdata/.gitignore
 docker-setup/images
+docker-setup/config/s6web/web/supervise/status
 .code-workspace
 movies-full-source-code
 htdocs/movies.opigno
