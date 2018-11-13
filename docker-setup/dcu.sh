@@ -4,7 +4,7 @@
 # cd docker-setup
 
 # Step 2
-#docker build  -t node8php7.1-web:1.0 .
+# docker build  -t node8php7.1-web:1.0 .
 
 # Step 3
 # Run this bash script from which you are reading the instructions.
@@ -31,13 +31,13 @@ docker-compose ps
 docker exec -ti apis3_web /bin/bash -c "cd /var/www/htdocs/movies; exec ${SHELL:-sh}"
 
 # Step 4
-#composer install
+# composer install
 
 # Step 5
-#bin/console doctrine:migrations:migrate
+# bin/console doctrine:migrations:migrate
 
-#Step 6
-#bin/console doctrine:fixtures:load
+# Step 6
+# bin/console doctrine:fixtures:load
 
 # Step 7
 # Make hosts file entry
@@ -76,7 +76,7 @@ docker exec -ti apis3_web /bin/bash -c "cd /var/www/htdocs/movies; exec ${SHELL:
 # 6. Send
 
 # To run mysql in web container
-#mysql -u usoft -h 202.22.2.33 -p1235 movies
+# mysql -u usoft -h 202.22.2.33 -p1235 movies
 
 # In another terminal - for monitoring redis (access log)
-#docker exec -ti apis3_redis /bin/sh -c "redis-cli MONITOR"
+# docker exec -ti apis3_redis /bin/sh -c "redis-cli MONITOR"
