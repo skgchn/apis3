@@ -6,6 +6,7 @@ use AppBundle\Security\TokenStorage;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Exception\JWTDecodeFailureException;
 use Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\AuthorizationHeaderTokenExtractor;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,11 +27,20 @@ class TokenAuthenticator extends AbstractGuardAuthenticator {
      * @var TokenStorage
      */
     private $tokenStorage;
+    
 
-    public function __construct(JWTEncoderInterface $jwtEncoder, TokenStorage $tokenStorage) {
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
 
+    public function __construct(
+            JWTEncoderInterface $jwtEncoder,
+                TokenStorage $tokenStorage,
+                    LoggerInterface $logger) {
         $this->jwtEncoder = $jwtEncoder;
         $this->tokenStorage = $tokenStorage;
+        $this->logger = $logger;
     }
     
     /**
@@ -51,6 +61,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator {
      */
     public function checkCredentials($credentials, UserInterface $user): bool {
         #return 'abcba' === $credentials;
+        $this->logger->info("Checking authentication credentials...since the JWT is already decoded/verified in getUser() nothing to check here.");
         return true;
     }
 
@@ -82,6 +93,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator {
      */
     public function getCredentials(Request $request) {
         //return $request->headers->get('X-Auth-Token');
+        $this->logger->info("1. Extracting credentials from the request");
         
         $extractor = new AuthorizationHeaderTokenExtractor('Bearer', 'Authorization');
         $token = $extractor->extract($request);
@@ -110,24 +122,29 @@ class TokenAuthenticator extends AbstractGuardAuthenticator {
      */
     public function getUser($credentials, UserProviderInterface $userProvider) {
         #return new User('username', 'password');
+        $this->logger->info("2. Decoding the token to get username and then the user record");
         
         try {
             $data = $this->jwtEncoder->decode($credentials);
             
             if (false === $data) {
+                $this->logger->debug("Token is null");
                 return null;
             }
             
            if (!$this->tokenStorage->isTokenValid($data['username'], $credentials)) {
+               $this->logger->debug("Token for " . $data['username'] . " not found in token storage or, is different than the one stored there.");
                return null;
            }
 
            return $userProvider->loadUserByUsername($data['username']);
 
         } catch (JWTDecodeFailureException $ex) {
+            $this->logger->debug("Unable to decode token for username to fetch it's user record. " . $ex->getMessage());
             return null;
         }
         
+        $this->logger->info("Should never come here.");
         return null;
     }
 
@@ -146,6 +163,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator {
      * @return Response|null
      */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception) {
+        $this->logger->info("Authentication failed. Response code HTTP_FORBIDDED " . Response::HTTP_FORBIDDEN);
         return new JsonResponse(null, Response::HTTP_FORBIDDEN);
     }
 
@@ -165,6 +183,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator {
      * @return Response|null
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey) {
+        $this->logger->info("Authentication successful.");
         return null;
     }
 
@@ -187,6 +206,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator {
      * @return Response
      */
     public function start(Request $request, AuthenticationException $authException = null): Response {
+        $this->logger->info("Unauthorized. Response code HTTP_UNAUTHORIZED " . Response::HTTP_UNAUTHORIZED);
         return new JsonResponse(null, Response::HTTP_UNAUTHORIZED); // HTTP_UNAUTHORIZED is 401
     }
 
@@ -205,6 +225,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator {
      * @return bool
      */
     public function supportsRememberMe(): bool {
+        $this->logger->info("Does not support remember me.");
         return false;
     }
 }

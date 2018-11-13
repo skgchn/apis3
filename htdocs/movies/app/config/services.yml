@@ -39,3 +39,7 @@ services:
     AppBundle\Serializer\DoctrineEntityDeserializationSubscriber:
         tags: ['jms_serializer.event_subscriber']
         public: false
+    
+    # Globally add the file name, the line number, the class name and the method name to the log messages.
+    Monolog\Processor\IntrospectionProcessor:
+        tags: [monolog.processor]

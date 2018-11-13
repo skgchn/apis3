@@ -13,6 +13,7 @@ use AppBundle\Security\TokenStorage;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\ControllerTrait;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
+use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -42,15 +43,22 @@ class TokensController  extends AbstractController {
      * @var TokenStorage
      */
     private $tokenStorage;
-    
+
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
     public function __construct(
             UserPasswordEncoderInterface $passwordEncoder,
                 JWTEncoderInterface $jwtEncoder,
-                    TokenStorage $tokenStorage) {
+                    TokenStorage $tokenStorage,
+                        LoggerInterface $logger) {
         
         $this->passwordEncoder = $passwordEncoder;
         $this->jwtEncoder = $jwtEncoder;
         $this->tokenStorage = $tokenStorage;
+        $this->logger = $logger;
     }
     
     /**
@@ -59,17 +67,21 @@ class TokensController  extends AbstractController {
     
     public function postTokenAction(Request $request) {
 
+        $this->logger->debug("Generating token for user " . $request->getUser());
+
         /* @var $user User */
         $user = $this->getDoctrine()
                 ->getRepository('AppBundle:User')
                 ->findOneBy(['username' => $request->getUser()]);
         
         if (!$user) {
+            $this->logger->debug("User " . $request->getUser() . " not present");
             throw new BadCredentialsException();
         }
         
         $passwordIsValid = $this->passwordEncoder->isPasswordValid($user, $request->getPassword());
         if (!$passwordIsValid) {
+            $this->logger->debug("Incorrect password for user " . $request->getUser());
             throw new BadCredentialsException();
         }
         
