@@ -43,9 +43,37 @@ docker exec -ti apis3_web /bin/bash -c "cd /var/www/htdocs/movies; exec ${SHELL:
 # Make hosts file entry
 # 202.22.2.55     apis3.test www.apis3.test
 
-# Note
+# Step 8
 # You may have to generate your own SSL certificates for the domain and place in docker-setup/config/webapache/devssl.
 # Also you may have to import your private CA certificate as trusted CA in your browser.
+
+# Step 9
+# Install any REST client browser extention, I am using Tabbed Postman (https://github.com/oznu/postman-chrome-extension-legacy)
+
+# Step 10
+# An unauthenticated API endpoint is https://apis3.test/messages
+# Use GET as the HTTP method, set Accept header as application/json
+
+# For exchanging username and password with a JWT,
+# 1. Click on Basic auth tab.
+# 2. Use API endpoint, https://apis3.test/tokens
+# 3. Use POST as the HTTP method
+# 4. Enter username user1 and password Secure123!
+# 5. Click on Refresh headers button.
+# 6. Set both Content-Type and Accept headers as application/json
+# 7. Click Send
+
+# For changing user's password
+# 1. Use API endpoint https://apis3.test/users/20
+# 2. Use PATCH as the HTTP method
+# 3. Set both Content-Type and Accept headers as application/json
+# 4. Add Header Authorization, set it's value to Bearer replace-this-with-a-JWT
+# 5. In the body add the new password and the retyped_password.
+# {
+#   "password": "Secure1234!",
+#   "retyped_password":"Secure1234!"  
+# }
+# 6. Send
 
 # To run mysql in web container
 #mysql -u usoft -h 202.22.2.33 -p1235 movies
