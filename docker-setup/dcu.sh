@@ -45,6 +45,7 @@ docker exec -ti apis3_web /bin/bash -c "cd /var/www/htdocs/movies; exec ${SHELL:
 
 # Step 8
 # You may have to generate your own SSL certificates for the domain and place in docker-setup/config/webapache/devssl.
+# Update SSLCertificateFile, SSLCertificateKeyFile in docker-setup/config/webapache/apache/25-app-ssl.conf file.
 # Also you may have to import your private CA certificate as trusted CA in your browser.
 
 # Step 9
